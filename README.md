@@ -17,3 +17,5 @@ heroku
 - hit deploy
 - heroku rigth top of page => `page` => `run terminal` => `run --app beeeee <AppName> knex migrate:latest`
   or install Heroku ClI and run from local terminal `heroku run --app beeeee knex migrate:latest`
+
+Can push
