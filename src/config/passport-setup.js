@@ -26,6 +26,7 @@ passport.use(
       return done(err, user);
     }); */
     console.log('authenticated', profile)
+    done(null, profile.login)
   }
 ))
 }

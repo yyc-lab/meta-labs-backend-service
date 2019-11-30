@@ -13,7 +13,7 @@ router.get('/github',
   function(req, res) {
     // Successful authentication, redirect home.
     console.log('successful login')
-    res.redirect('/');
+    res.send('welcome here traveller');
 });
 
 module.exports = router;
