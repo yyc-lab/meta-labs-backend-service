@@ -6,7 +6,12 @@ const bodyParser    = require("body-parser");
 const cookieSession = require('cookie-session');
 const morgan        = require("morgan");
 const app           = express();
+const datahelpers   = require('./DataHelpers/data-helpers');
+const passport      = require('passport');
+const passportSetup = require('./config/passport-setup')(datahelpers);
 const cors          = require('cors');
+const authRoutes    = require('./routes/auth-routes');
+
 require('dotenv').config();
 
 app.use(cors());
@@ -18,9 +23,9 @@ app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
 }));
-
-
-const datahelpers = require('./DataHelpers/data-helpers');
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/auth', authRoutes);
 
 const projectRoutes = require("./routes/projects.js")(datahelpers);
 app.use("/projects", projectRoutes);
