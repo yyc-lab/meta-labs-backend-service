@@ -8,7 +8,7 @@ const morgan        = require("morgan");
 const app           = express();
 const datahelpers   = require('./DataHelpers/data-helpers');
 const passport      = require('passport');
-const passportSetup = require('./config/passport-setup')(datahelpers);
+const passportSetup = require('./config/passport-setup')(datahelpers.user_helpers);
 const cors          = require('cors');
 const authRoutes    = require('./routes/auth-routes');
 
