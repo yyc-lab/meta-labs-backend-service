@@ -20,7 +20,7 @@ const knex = require('knex')({
 });
 const dataHelpers = {
   projects_helpers : require('./data-helpers-projects')(knex),
-  user_helpers = require('./users')(knex)
+  user_helpers : require('./users')(knex)
 }
 
 module.exports = dataHelpers;

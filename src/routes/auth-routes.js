@@ -12,7 +12,6 @@ router.get('/github',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    console.log('successful login')
     res.send('welcome here traveller');
 });
 
