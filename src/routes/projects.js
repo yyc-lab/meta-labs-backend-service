@@ -11,7 +11,6 @@ const projectRoutes  = express.Router();
 
 const getPostCallback = function(res){
   const postCallback = function(err, result){
-    console.log("callback", err, result)
     if(err){
       res.status(404).send('error');
     }
@@ -40,7 +39,6 @@ module.exports = function(DataHelpers) {
   })
 
   projectRoutes.post('/', function(req,res){
-    console.log('received post request', req.body)
    /* DataHelpers.projects_helpers.addProject(getPostCallback(res), 
     {"name":"something cool",
     "description":"better than the previous",
