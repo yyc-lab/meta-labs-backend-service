@@ -49,6 +49,7 @@ setUpLinkedinPassport = function (dataHelpersParam){
             );
           }
         }
+      )
     }
   ))
 }
