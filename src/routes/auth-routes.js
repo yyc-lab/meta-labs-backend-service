@@ -30,11 +30,10 @@ router.get('/github/callback',
    // (error, user) => console.log('user', user)
   ),
   function(req, res) {
-    console.log(req.session)
+    //console.log(req.session)
     // Successful authentication, redirect home.
 
     res.redirect('http://localhost:3000/?token=whatever');
 });
-
 
 module.exports = router;
