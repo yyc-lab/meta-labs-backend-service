@@ -9,6 +9,7 @@ if(process.env.NODE_ENV === 'development'){
     password : process.env.DB_PASS,
     database : process.env.DB_NAME,
     port     : process.env.DB_PORT,
+    ssl      : process.env.DB_SSL
   }
 }else{
   connection = process.env.DATABASE_URL + '?ssl=true'
