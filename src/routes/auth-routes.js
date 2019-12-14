@@ -8,7 +8,7 @@ const passport = require('passport');
 router.get('/github',
   passport.authenticate('github', { scope: [ 'user:email' ] }, () => console.log('call auth', arguments)));
 
-  app.get('//github/callback', function(req, res, next) {
+router.get('/github/callback', function(req, res, next) {
     passport.authenticate('github', function(err, user, info) {
       console.log({err})
       console.log({user})
