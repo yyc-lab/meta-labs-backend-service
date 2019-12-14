@@ -12,7 +12,7 @@ router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.send('welcome here traveller');
+    res.redirect('http://localhost:3000/?token=whatever');
 });
 
 module.exports = router;
