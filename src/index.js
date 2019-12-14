@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // <--- Here
 app.use(express.static("public"));
-app.user(cookieParser)
+app.use(cookieParser)
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
