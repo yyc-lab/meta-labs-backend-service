@@ -8,12 +8,12 @@ const passport = require('passport');
 router.get('/github',
   passport.authenticate('github', { scope: [ 'user:email' ] }, () => console.log('call auth', arguments)));
 
-router.get('/github/callback', 
+router.get('/github/callback', function(req, res){
   passport.authenticate(
     'github',
    // { failureRedirect: '/login' },
     (error, user) => console.log('user', user)
-  ),
+  )},
   function(req, res) {
     console.log(req.session)
     // Successful authentication, redirect home.
