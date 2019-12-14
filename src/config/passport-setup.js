@@ -40,13 +40,16 @@ setUpLinkedinPassport = function (dataHelpersParam){
       dataHelpers.getUserByToken(
         profile.id,
         function (error, user) {
+
           if (user) {
+            console.log('user exits', user)
             done(null, user);
           } else {
             const userProfile = createUserProfile(profile);
             dataHelpers.createUser(
               userProfile,
               function (err, user) {
+                console.log('created user', user)
                 done(null, user[0]);
               }
             );
