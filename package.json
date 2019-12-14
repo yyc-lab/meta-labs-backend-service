@@ -4,7 +4,7 @@
   "description": "meta-labs-backend-service",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "knex migrate:latest && node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
