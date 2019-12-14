@@ -25,12 +25,15 @@ const createUserProfile = function(profile){
 }
 
 setUpLinkedinPassport = function (dataHelpersParam){
+  const callbackURL = process.env.NODE_ENV !== 'DEVELOPMENT' ?
+  process.env.CALLBACK_URL :
+  "http://localhost:3030/auth/github/callback"
   dataHelpers = dataHelpersParam;
   passport.use(
     new GitHubStrategy({
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "https://beeeee.herokuapp.com/auth/github"
+      callbackURL: callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
       // consider refactor next callback nightmare into singe findOrCreate call
