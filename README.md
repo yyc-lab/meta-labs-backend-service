@@ -25,3 +25,16 @@ To keep configuration simple, we do not use docker while deploying
   or install Heroku ClI and run from local terminal `heroku run --app beeeee (cd server && npm run dbmigrate)`
 
 Can push
+
+## Extras
+
+### Bash Helpers
+`dcb` == `docker-compose build` - builds your docker containers
+`dcd` == `docker-compose down` - turns off containers and network
+`dcrr` == `docker-compose run remove server` - for running a command within the server (e.g. `dcrr bash` or `dcrr npm start`)
+`dcu` == `docker-compose up` - spins up docker environment
+
+### PGWeb
+
+When running the server with `docker-compose up` or `dcu`, a web interface is available into your database.
+You can see it in the browser at `localhost:8081`.

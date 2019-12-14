@@ -17,10 +17,10 @@ function dcd() {
     docker-compose down
 }
 
-# docker-compose run remove - for running a command within a container
+# docker-compose run remove - for running a command within the server
 function dcrr() {
-    # takes: service [command]
-    docker-compose run --rm $@
+    # takes: command
+    docker-compose run --rm server $@
 }
 
 # docker-compose up - spins up docker environment
