@@ -11,7 +11,7 @@ services:
   server: # The container that runs our code
     restart: 'always'
     build:
-      context: ./server
+      context: .
     restart: always
     stdin_open: true
     tty: true
@@ -29,8 +29,11 @@ services:
       - DB_SSL
       - DB_USER
       - NODE_ENV
+      - GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET
+      - CALLBACK_URL
     volumes: # Volumes map files on our computer into the docker container
-      - './server:/usr/src/server' # This copies what's on our computer on to the container
+      - '.:/usr/src/server' # This copies what's on our computer on to the container
       - /usr/src/server/node_modules/ # This stops it from nuking the node_modules folder when it copies over the code
 
   db: # A pre-built container containing Postgres

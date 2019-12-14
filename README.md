@@ -21,14 +21,15 @@ To keep configuration simple, we do not use docker while deploying
 - select Github as deployment method
 - select repo: meta-labs-backend-service (you might have to fork https://github.com/yyc-lab/meta-labs-backend-service)
 - hit deploy
-- heroku rigth top of page => `page` => `run terminal` => `run --app beeeee <AppName> (cd server && npm run dbmigrate)`
-  or install Heroku ClI and run from local terminal `heroku run --app beeeee (cd server && npm run dbmigrate)`
+- heroku rigth top of page => `page` => `run terminal` => `run --app beeeee <AppName> npm run dbmigrate`
+  or install Heroku ClI and run from local terminal `heroku run --app beeeee npm run dbmigrate`
 
 Can push
 
 ## Extras
 
 ### Bash Helpers
+Run `source bashhelpers.sh` to get some useful command line tools:
 `dcb` == `docker-compose build` - builds your docker containers
 `dcd` == `docker-compose down` - turns off containers and network
 `dcrr` == `docker-compose run remove server` - for running a command within the server (e.g. `dcrr bash` or `dcrr npm start`)
