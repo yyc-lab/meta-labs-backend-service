@@ -4,7 +4,7 @@
   "description": "meta-labs-backend-service",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "npx knex migrate:latest && node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dbmigrate": "npx knex migrate:latest"
   },
@@ -26,6 +26,8 @@
     "express": "^4.17.1",
     "knex": "^0.19.4",
     "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-github2": "^0.1.11",
     "pg": "^7.12.1"
   }
 }
