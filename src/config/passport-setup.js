@@ -5,7 +5,7 @@ require('dotenv').config();
 let dataHelpers = null;
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user);
 });
 
 passport.deserializeUser((id, done) => 
@@ -32,8 +32,7 @@ setUpLinkedinPassport = function (dataHelpersParam){
   passport.use(
     new GitHubStrategy({
       clientID: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: callbackURL
+      clientSecret: process.env.GITHUB_CLIENT_SECRET
     },
     function(accessToken, refreshToken, profile, done) {
       // consider refactor next callback nightmare into singe findOrCreate call
