@@ -10,7 +10,12 @@ const app           = express();
 const datahelpers   = require('./DataHelpers/data-helpers');
 const passport      = require('passport');
 const passportSetup = require('./config/passport-setup')(datahelpers.user_helpers);
-const passportJWT = require('./config/passport-jwt')(datahelpers.user_helpers);
+//const passportJWT = require('./config/passport-jwt')(datahelpers.user_helpers);
+const jwt = require('jsonwebtoken');
+
+const passportJWT = require("passport-jwt");
+const JWTStrategy   = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 
 const cors          = require('cors');
 const authRoutes    = require('./routes/auth-routes');
@@ -27,9 +32,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', authRoutes);
 
+function middleware(req, res, next){
+  const user = jwt.verify(req.headers['authorization'], 'your_jwt_secret');
+  req.user = user
+  next()
+}
+
 const projectRoutes = require("./routes/projects.js")(datahelpers);
 app.use("/projects", projectRoutes);
-app.use('/user', passport.authenticate('jwt', {session: false}), usersRoutes);
+app.use(middleware)
+app.use('/user', usersRoutes);
 const server = app.listen(process.env.PORT || PORT, () => {
 
   console.log("Example app listening on port " + (process.env.PORT || PORT));
