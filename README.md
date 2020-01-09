@@ -6,6 +6,9 @@ local
 - clone repo: `git clone https://github.com/yyc-lab/meta-labs-backend-service.git`
 - npm install
 - copy .env-example to .env, reaplace values
+    - needs a local pq db
+    - needs a GitHub app    => https://github.com/settings/applications/new
+                             => Authorization callback URL has to end w '/auth/github/callback'
 - knex migrate:latest
 - npm start
 
@@ -18,4 +21,3 @@ heroku
 - heroku rigth top of page => `page` => `run terminal` => `run --app beeeee <AppName> knex migrate:latest`
   or install Heroku ClI and run from local terminal `heroku run --app beeeee knex migrate:latest`
 
-Can push
