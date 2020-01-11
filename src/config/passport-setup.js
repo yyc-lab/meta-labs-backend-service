@@ -1,17 +1,17 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
-require('dotenv').config(); 
+require('dotenv').config();
 
 let dataHelpers = null;
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user);
 });
 
-passport.deserializeUser((id, done) => 
+passport.deserializeUser((id, done) =>
   {
     dataHelpers.getUserById(id, (user) => done(null, user))
-  } 
+  }
 );
 
 const createUserProfile = function(profile){
@@ -25,15 +25,11 @@ const createUserProfile = function(profile){
 }
 
 setUpLinkedinPassport = function (dataHelpersParam){
-  const callbackURL = process.env.NODE_ENV !== 'DEVELOPMENT' ?
-  process.env.CALLBACK_URL :
-  "http://localhost:3030/auth/github/callback"
   dataHelpers = dataHelpersParam;
   passport.use(
     new GitHubStrategy({
       clientID: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: callbackURL
+      clientSecret: process.env.GITHUB_CLIENT_SECRET
     },
     function(accessToken, refreshToken, profile, done) {
       // consider refactor next callback nightmare into singe findOrCreate call
@@ -47,6 +43,7 @@ setUpLinkedinPassport = function (dataHelpersParam){
             dataHelpers.createUser(
               userProfile,
               function (err, user) {
+                console.log('created user', user)
                 done(null, user[0]);
               }
             );
