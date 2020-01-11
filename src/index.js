@@ -33,7 +33,7 @@ function middleware(req, res, next){
     req.user = user
   }
   if(user == null){
-    res.send("unauthorized")
+    res.status(400).json({error : "Unauthorized"})
   }
   next()
 }

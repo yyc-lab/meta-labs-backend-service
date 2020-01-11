@@ -13,11 +13,10 @@ local
 - npm start
 
 heroku
-- login heroku
+- login to heroku
 - click create new app
 - select Github as deployment method
 - select repo: meta-labs-backend-service (you might have to fork https://github.com/yyc-lab/meta-labs-backend-service)
 - hit deploy
-- heroku rigth top of page => `page` => `run terminal` => `run --app beeeee <AppName> knex migrate:latest`
-  or install Heroku ClI and run from local terminal `heroku run --app beeeee knex migrate:latest`
-
+- heroku rigth top of page => `page` => `run terminal` => `knex migrate:latest`
+  or install Heroku ClI and run from local terminal `heroku run --app metalabs knex migrate:latest`
