@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/yyc-lab/meta-labs-backend-service.git"
   },
-  "author": "Gergely Juhasz",
+  "author": "YYC Labs",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yyc-lab/meta-labs-backend-service/issues"
