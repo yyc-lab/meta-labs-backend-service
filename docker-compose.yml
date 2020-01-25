@@ -1,0 +1,61 @@
+---
+version: '3.4'
+
+# Docker Compose is a tool that acts like an orchestra conductor for docker containers
+# It tells individual containers when to start, what they need to know, and where to store data
+
+volumes:
+  postgres_data: {}
+
+services:
+  server: # The container that runs our code
+    restart: 'always'
+    build:
+      context: .
+    restart: always
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    expose:
+      - '3030'
+    ports:
+      - '3030:3030'
+    environment:
+      - DB_HOST
+      - DB_NAME
+      - DB_PASS
+      - DB_PORT
+      - DB_SSL
+      - DB_USER
+      - NODE_ENV
+      - GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET
+      - CALLBACK_URL
+    volumes: # Volumes map files on our computer into the docker container
+      - '.:/usr/src/server' # This copies what's on our computer on to the container
+      - /usr/src/server/node_modules/ # This stops it from nuking the node_modules folder when it copies over the code
+
+  db: # A pre-built container containing Postgres
+    image: 'postgres:11-alpine'
+    restart: always
+    ports:
+      - '${DB_PORT}:5432'
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - 'postgres_data:/var/lib/postgresql/data'
+
+  pgweb: # A pre-built container that creates a web interface for Postgres databases
+    # restart: always
+    image: sosedoff/pgweb
+    ports:
+      - '8081:8081'
+    links:
+      - 'db:postgres'
+    environment:
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable
+    depends_on:
+      - db

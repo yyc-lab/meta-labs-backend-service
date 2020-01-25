@@ -4,8 +4,9 @@
   "description": "meta-labs-backend-service",
   "main": "index.js",
   "scripts": {
-    "start": "knex migrate:latest && node ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx knex migrate:latest && node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dbmigrate": "npx knex migrate:latest"
   },
   "repository": {
     "type": "git",
