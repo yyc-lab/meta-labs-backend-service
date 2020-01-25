@@ -18,12 +18,16 @@ const projectRoutes = require("./routes/projects.js")(datahelpers);
 // TODO: move this function from this file?
 function middleware(req, res, next) {
   let user;
+
   if (req.headers["authorization"]) {
-    user = jwt.verify(req.headers["authorization"], "your_jwt_secret");
+    const header = req.headers["authorization"].replace(/Bearer\s+/i, "")
+    user = jwt.verify(header, process.env.JWT_SECRET);
+
     req.user = user;
   }
   if (user == null) {
     res.status(400).json({ error: "Unauthorized" });
+    return
   }
   next();
 }

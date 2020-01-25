@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 /* GET user profile. */
 router.get('/profile', function(req, res) {
-  res.startus(200).json({data: req.user});
+  res.json({data: req.user});
 });
 
 module.exports = router;
