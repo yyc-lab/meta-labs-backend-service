@@ -1,6 +1,5 @@
-"use strict";
-
-const PORT          = 3030;
+require('dotenv').config();
+const PORT          = process.env.PORT || 3030;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const cookieParser  = require('cookie-parser');
@@ -14,7 +13,6 @@ const jwt = require('jsonwebtoken');
 const cors          = require('cors');
 const authRoutes    = require('./routes/auth-routes');
 const usersRoutes   = require('./routes/user');
-require('dotenv').config();
 
 app.use(cors());
 app.use(morgan('dev'));
