@@ -9,20 +9,22 @@ Backend logic for building our app to build more apps
 ### Developing locally
 This project uses docker & docker-compose while developing to automate the dev setup process
 - clone repo: `git clone https://github.com/yyc-lab/meta-labs-backend-service.git`
-- copy .env-example to .env, replace values
-- run the server using `docker-compose up`
-- run the migrations using `docker-compose run --rm server npm run dbmigrate`
-- (Optional) run `source bashhelpers.sh` to get some useful aliases
+- npm install
+- copy .env-example to .env, reaplace values
+    - needs a local pq db
+    - needs a GitHub app    => https://github.com/settings/applications/new
+                             => Authorization callback URL has to end w '/auth/github/callback'
+- knex migrate:latest
+- npm start
 
-### Deploying to Heroku
-To keep configuration simple, we do not use docker while deploying
-- login heroku
+heroku
+- login to heroku
 - click create new app
 - select Github as deployment method
 - select repo: meta-labs-backend-service (you might have to fork https://github.com/yyc-lab/meta-labs-backend-service)
 - hit deploy
-- heroku rigth top of page => `page` => `run terminal` => `run --app beeeee <AppName> npm run dbmigrate`
-  or install Heroku ClI and run from local terminal `heroku run --app beeeee npm run dbmigrate`
+- heroku rigth top of page => `page` => `run terminal` => `knex migrate:latest`
+  or install Heroku ClI and run from local terminal `heroku run --app metalabs knex migrate:latest`
 
 Can push
 
